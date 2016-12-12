@@ -20,9 +20,35 @@ function drawSquare(xpos, ypos, size, color) {
   newRect.setAttribute("fill",color)
   screen.appendChild(newRect)
 }
+function drawCircle(xpos, ypos, radius, color) {
+  var newCircle = document.createElementNS(namespace, "circle")
+  newcircle.setAttribute("cx", xpos)
+  newcircle.setAttribute("cy", ypos)
+  newcircle.setAttribute("r", radius)
+  newcircle.setAttribute("fill", color)
+  canvas.appendChild(newCircle)
+}
 
 // Step 3: Event listeners
+var click = false
 document.addEventListener("mousedown", function(e) {
-  // what do you want to do when the user presses down
-  // on the mouse button?
+ var pt = transformPoint(e, screen)
+drawCircle(50,50,50,"blue")
+ screen.appendChild(newCircle)
+ click = true
+})
+
+document.addEventListener("mouseup", function(e) {
+   var pt = transformPoint(e, screen)
+drawCircle(50,50,50,"blue")
+   screen.appendChild(newCircle)
+   click = false
+})
+
+document.addEventListener("mousemove", function(e) {
+  if(click == true){
+    var pt = transformPoint(e, screen)
+   drawCircle(50,50,50,"blue")
+    screen.appendChild(newCircle)
+  }
 })
