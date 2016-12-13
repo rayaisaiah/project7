@@ -32,59 +32,46 @@ function drawCircle(xpos, ypos, radius, color) {
 // Step 3: Event listeners
 var click = false
 document.addEventListener("mousedown", function(e) {
+  var selectShape = document.getElementById("shapeSelect").value
+  var selectColor = document.getElementById("colorSelect").value
+  var selectSize =document.getElementById("sizeSelect").value
  var pt = transformPoint(e, screen)
-drawCircle(pt.x,pt.y,10,"blue")
+ drawCircle(pt.x,pt.y,document.getElementById("sizeSelect").value,document.getElementById("colorSelect").value)
 
  click = true
 })
 
 document.addEventListener("mouseup", function(e) {
-   var pt = transformPoint(e, screen)
-drawCircle(pt.x,pt.y,15,"blue")
+  var selectShape = document.getElementById("shapeSelect").value
+  var selectColor = document.getElementById("colorSelect").value
+  var selectSize =document.getElementById("sizeSelect").value
+//WORK HERE!!!
+
+
+
+
+  var pt = transformPoint(e, screen)
+  drawCircle(pt.x,pt.y,document.getElementById("sizeSelect").value,document.getElementById("colorSelect").value)
 
    click = false
 })
 
 document.addEventListener("mousemove", function(e) {
   var selectShape = document.getElementById("shapeSelect").value
-  var selectColor= document.getElementById("colorSelect").value
-  //shape
-  if (selectShape == "circle"){
-    if(click == true){
-      var pt = transformPoint(e, screen)
-     drawCircle(pt.x,pt.y,10,"blue")
-    }
+  var selectColor = document.getElementById("colorSelect").value
+  var selectSize =document.getElementById("sizeSelect").value
+if(selectShape=="circle"){
+  if(click==true){
+    var pt = transformPoint(e, screen)
+    drawCircle(pt.x,pt.y,document.getElementById("sizeSelect").value,document.getElementById("colorSelect").value)
   }
-  else {
-    if(click == true){
-      var pt = transformPoint(e, screen)
-     drawSquare(pt.x,pt.y,10,"blue")
-    }
+}
+if(selectShape=="square"){
+  if(click==true){
+    var pt = transformPoint(e, screen)
+      drawSquare(pt.x,pt.y,document.getElementById("sizeSelect").value,document.getElementById("colorSelect").value)
   }
-    //color
-    if(selectColor == "red"){
-      if(click == true){
-        var pt = transformPoint(e, screen)
-       drawCircle(pt.x,pt.y,10,"red")
-    }
-  }
-    if(selectColor == "green"){
-      if(click == true){
-        var pt = transformPoint(e, screen)
-       drawCircle(pt.x,pt.y,10,"green")
-    }
-  }
-    if(selectColor == "blue"){
-      if(click == true){
-        var pt = transformPoint(e, screen)
-       drawCircle(pt.x,pt.y,10,"blue")
-    }
-  }
-    if(selectColor == "yellow"){
-      if(click == true){
-        var pt = transformPoint(e, screen)
-       drawCircle(pt.x,pt.y,10,"yellow")
-    }
-  }
+}
+
 }
 )
