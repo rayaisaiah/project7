@@ -1,5 +1,7 @@
 var screen = document.getElementById("screen")
 var namespace = "http://www.w3.org/2000/svg"
+var rainbowArray = ["red","yellow","blue","green","purple"];
+var rainbowIndex = 0;
 
 // utility function
 function transformPoint(event) {
@@ -28,15 +30,15 @@ function drawCircle(xpos, ypos, radius, color) {
   newCircle.setAttribute("fill", color)
   screen.appendChild(newCircle)
 }
-/*function drawTriangle(xpos, ypos, size, color) {
+function drawTriangle(xpos, ypos, base, height, color) {
   var pts = "" + xpos + "," + ypos + " " + (xpos + base) + "," + ypos + " " + (xpos + 0.5*base) + "," + (ypos - height)
   var triangle = document.createElementNS(namespace, "polygon")
   triangle.setAttribute("points", pts)
-  triangle.setAttribute("fill", color)
-  triangle.setAttribute("height",size)
   triangle.setAttribute("base",size)
+  triangle.setAttribute("height",size)
+  triangle.setAttribute("fill", color)
   screen.appendChild(triangle)
-}*/
+}
 
 // Step 3: Event listeners
 var click = false
@@ -52,6 +54,11 @@ document.addEventListener("mousedown", function(e) {
 }
 if(selectShape=="circle"){
 drawCircle(pt.x,pt.y,document.getElementById("sizeSelect").value,document.getElementById("colorSelect").value)
+
+ click = true
+}
+if(selectShape=="triangle"){
+drawTriangle(pt.x,pt.y,document.getElementById("colorSelect").value)
 
  click = true
 }
@@ -72,6 +79,11 @@ document.addEventListener("mouseup", function(e) {
 
   click = false
 }
+if(selectShape=="triangle"){
+drawTriangle(pt.x,pt.y,document.getElementById("colorSelect").value)
+
+ click = false
+}
 })
 
 document.addEventListener("mousemove", function(e) {
@@ -90,13 +102,38 @@ if(selectShape=="square"){
       drawSquare(pt.x,pt.y,document.getElementById("sizeSelect").value,document.getElementById("colorSelect").value)
   }
 }
-/*if(selectShape=="triangle"){
+if(selectShape=="triangle"){
   if(click==true){
     var pt = transformPoint(e, screen)
-      drawTriangle(pt.x,pt.y,document.getElementById("sizeSelect").value,document.getElementById("colorSelect").value)
+      drawTriangle(pt.x,pt.y,document.getElementById("colorSelect").value)
   }
-}*/
-
+}
+if (selectColor=="rainbow"){
+  if(selectShape=="circle"){
+    if(click==true){
+      var pt = transformPoint(e, screen)
+      drawCircle(pt.x,pt.y,document.getElementById("sizeSelect").value,rainbowArray[rainbowIndex])
+    }
+  }
+  if(selectShape=="square"){
+    if(click==true){
+      var pt = transformPoint(e, screen)
+        drawSquare(pt.x,pt.y,document.getElementById("sizeSelect").value,rainbowArray[rainbowIndex])
+    }
+  }
+  if(selectShape=="triangle"){
+    if(click==true){
+      var pt = transformPoint(e, screen)
+        drawTriangle(pt.x,pt.y,document.getElementById("sizeSelect").value,rainbowArray[rainbowIndex])
+    }
+  }
+  if(rainbowIndex == rainbowArray.length){
+    rainbowIndex = 0;
+  }
+  else{
+    rainbowIndex++;
+  }
+}
 }
 )
 function erase() {
