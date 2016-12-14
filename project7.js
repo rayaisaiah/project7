@@ -36,24 +36,33 @@ document.addEventListener("mousedown", function(e) {
   var selectColor = document.getElementById("colorSelect").value
   var selectSize =document.getElementById("sizeSelect").value
  var pt = transformPoint(e, screen)
- drawCircle(pt.x,pt.y,document.getElementById("sizeSelect").value,document.getElementById("colorSelect").value)
+ if(selectShape=="square"){
+ drawSquare(pt.x,pt.y,document.getElementById("sizeSelect").value,document.getElementById("colorSelect").value)
+
+  click = true
+}
+if(selectShape=="circle"){
+drawCircle(pt.x,pt.y,document.getElementById("sizeSelect").value,document.getElementById("colorSelect").value)
 
  click = true
+}
 })
 
 document.addEventListener("mouseup", function(e) {
   var selectShape = document.getElementById("shapeSelect").value
   var selectColor = document.getElementById("colorSelect").value
   var selectSize =document.getElementById("sizeSelect").value
-//WORK HERE!!!
-
-
-
-
   var pt = transformPoint(e, screen)
-  drawCircle(pt.x,pt.y,document.getElementById("sizeSelect").value,document.getElementById("colorSelect").value)
+  if(selectShape=="square"){
+  drawSquare(pt.x,pt.y,document.getElementById("sizeSelect").value,document.getElementById("colorSelect").value)
 
    click = false
+ }
+ if(selectShape=="circle"){
+ drawCircle(pt.x,pt.y,document.getElementById("sizeSelect").value,document.getElementById("colorSelect").value)
+
+  click = false
+}
 })
 
 document.addEventListener("mousemove", function(e) {
