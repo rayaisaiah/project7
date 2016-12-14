@@ -9,6 +9,7 @@
 </head>
 
 <body>
+  <h1>DRAWING PROJECT!</h1>
   <div id="programcontainer">
     <div id="drawingarea">
       <svg id="screen" width="70%" viewBox="0 0 800 400">
@@ -20,19 +21,22 @@
         <option value="blue">Blue</option>
         <option value="green">Green</option>
         <option value="yellow">Yellow</option>
+        <option value="purple">Purple</option>
       </select>
       <select class="selector" id ="shapeSelect">
         <option value="square">Square</option>
         <option value="circle">Circle</option>
+        <!--<option value="triangle">Triangle</option>-->
       </select>
       <select id ="sizeSelect">
         <option value="10">10</option>
         <option value="15">15</option>
         <option value="20">20</option>
+        <option value="50">50</option>
       </select>
     </div>
   </div>
-
+<button onclick="erase()" class = "erase"id="eraser">Erase!</button>
 <script src="project7.js"></script>
 </body>
 </html>

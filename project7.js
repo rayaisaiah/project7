@@ -28,6 +28,15 @@ function drawCircle(xpos, ypos, radius, color) {
   newCircle.setAttribute("fill", color)
   screen.appendChild(newCircle)
 }
+/*function drawTriangle(xpos, ypos, size, color) {
+  var pts = "" + xpos + "," + ypos + " " + (xpos + base) + "," + ypos + " " + (xpos + 0.5*base) + "," + (ypos - height)
+  var triangle = document.createElementNS(namespace, "polygon")
+  triangle.setAttribute("points", pts)
+  triangle.setAttribute("fill", color)
+  triangle.setAttribute("height",size)
+  triangle.setAttribute("base",size)
+  screen.appendChild(triangle)
+}*/
 
 // Step 3: Event listeners
 var click = false
@@ -81,6 +90,15 @@ if(selectShape=="square"){
       drawSquare(pt.x,pt.y,document.getElementById("sizeSelect").value,document.getElementById("colorSelect").value)
   }
 }
+/*if(selectShape=="triangle"){
+  if(click==true){
+    var pt = transformPoint(e, screen)
+      drawTriangle(pt.x,pt.y,document.getElementById("sizeSelect").value,document.getElementById("colorSelect").value)
+  }
+}*/
 
 }
 )
+function erase() {
+window.location.reload();
+}
